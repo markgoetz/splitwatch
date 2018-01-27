@@ -3,6 +3,8 @@ import { Router } from 'preact-router';
 
 import Timer from '../routes/timer';
 
+import firebase, { database } from '../lib/firebaseConfig';
+
 export default class App extends Component {
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)

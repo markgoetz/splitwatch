@@ -1,10 +1,11 @@
 import { h, Component } from 'preact';
 import style from './style';
 import renderTime from '../../lib/renderTime';
+import { updateTimer } from '../../lib/data';
 
 export default class Timer extends Component {
 	state = {
-		startTime: null,
+		startTime: 0,
 		baseTime: 0,
 		isPlaying: false,
 		elapsedTime: 0,
@@ -15,16 +16,12 @@ export default class Timer extends Component {
 		window.requestAnimationFrame(this.updateTime);
 	}
 
-	// gets called just before navigating away from the route
-	componentWillUnmount() {
-		clearInterval(this.timer);
-	}
-
 	startTime = () => {
 		this.setState({
 			startTime: Date.now(),
 			isPlaying: true,
 		});
+		updateTimer({ startTime: Date.now(), baseTime: this.state.baseTime });
 	}
 
 	pauseTime = () => {
@@ -32,6 +29,7 @@ export default class Timer extends Component {
 			isPlaying: false,
 			baseTime: Date.now() - this.state.startTime + this.state.baseTime,
 		});
+		updateTimer({ startTime: this.state.startTime, baseTime: Date.now() - this.state.startTime + this.state.baseTime });
 	}
 
 	stopTime = () => {
@@ -40,6 +38,7 @@ export default class Timer extends Component {
 			startTime: Date.now(),
 			baseTime: 0,
 		})
+		updateTimer({ startTime: Date.now(), baseTime: 0 });
 	}
 
 	render() {
@@ -48,8 +47,7 @@ export default class Timer extends Component {
 			<button onClick={this.startTime}>Play</button>;
 
 		return <div>
-			<div>Timer!</div>
-			<div>{ renderTime(this.state.elapsedTime) }</div>
+			<div>{ renderTime(this.state.elapsedTime, 1) }</div>
 			{ playPauseButton }
 			<button onClick={this.stopTime}>Stop</button>
 		</div>;
@@ -62,6 +60,5 @@ export default class Timer extends Component {
 				this.state.baseTime
 		});
 		window.requestAnimationFrame(this.updateTime);
-
 	}
 }
