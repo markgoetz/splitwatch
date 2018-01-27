@@ -1,11 +1,23 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
-import Timer from '../routes/timer';
+import TimerComponent from '../routes/timer';
 
 import firebase, { database } from '../lib/firebaseConfig';
 
 export default class App extends Component {
+	state = {
+		isPlaying: false,
+		startTime: 0,
+		baseTime: 0,
+	}
+
+	componentWillMount() {
+		database.ref().on('value',
+			data => this.setState(data.val())
+		);
+	}
+
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
@@ -18,7 +30,7 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Router onChange={this.handleRoute}>
-					<Timer path="/" />
+					<TimerComponent path="/" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />
 				</Router>
 			</div>
 		);

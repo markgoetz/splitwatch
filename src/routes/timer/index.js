@@ -1,48 +1,39 @@
 import { h, Component } from 'preact';
 import style from './style';
 import renderTime from '../../lib/renderTime';
-import { updateTimer } from '../../lib/data';
+import Timer from '../../lib/Timer';
 
-export default class Timer extends Component {
+export default class TimerComponent extends Component {
 	state = {
-		startTime: 0,
-		baseTime: 0,
-		isPlaying: false,
 		elapsedTime: 0,
 	};
 
 	// gets called when this route is navigated to
 	componentDidMount() {
 		window.requestAnimationFrame(this.updateTime);
+		this.timer = new Timer(this.props.startTime, this.props.baseTime);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.baseTime != this.props.baseTime) {
+			this.timer.setBaseTime(nextProps.baseTime);
+		}
 	}
 
 	startTime = () => {
-		this.setState({
-			startTime: Date.now(),
-			isPlaying: true,
-		});
-		updateTimer({ startTime: Date.now(), baseTime: this.state.baseTime });
+		this.timer.start(Date.now());
 	}
 
 	pauseTime = () => {
-		this.setState({
-			isPlaying: false,
-			baseTime: Date.now() - this.state.startTime + this.state.baseTime,
-		});
-		updateTimer({ startTime: this.state.startTime, baseTime: Date.now() - this.state.startTime + this.state.baseTime });
+		this.timer.pause(Date.now());
 	}
 
 	stopTime = () => {
-		this.setState({
-			isPlaying: false,
-			startTime: Date.now(),
-			baseTime: 0,
-		})
-		updateTimer({ startTime: Date.now(), baseTime: 0 });
+		this.timer.stop(Date.now());
 	}
 
 	render() {
-		const playPauseButton = this.state.isPlaying ?
+		const playPauseButton = this.props.isPlaying ?
 			<button onClick={this.pauseTime}>Pause</button> :
 			<button onClick={this.startTime}>Play</button>;
 
@@ -55,9 +46,9 @@ export default class Timer extends Component {
 
 	updateTime = () => {
 		this.setState({
-			elapsedTime: (this.state.isPlaying) ?
-				Date.now() - (this.state.startTime) + this.state.baseTime :
-				this.state.baseTime
+			elapsedTime: (this.props.isPlaying) ?
+				Date.now() - this.props.startTime + this.props.baseTime :
+				this.props.baseTime
 		});
 		window.requestAnimationFrame(this.updateTime);
 	}
