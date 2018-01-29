@@ -1,7 +1,8 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
-import TimerComponent from '../routes/timer';
+import ControlsView from '../routes/controlsview';
+import TimerView from '../routes/timerview';
 
 import firebase, { database } from '../lib/firebaseConfig';
 
@@ -30,7 +31,8 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Router onChange={this.handleRoute}>
-					<TimerComponent path="/" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />
+					<ControlsView path="/" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />
+					<TimerView path="/timer" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />
 				</Router>
 			</div>
 		);
