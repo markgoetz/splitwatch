@@ -7,8 +7,6 @@ html, body {
 	padding: 0;
 	margin: 0;
 	background: var(--dark-grey);
-	font-family: 'Fira Mono', monospace;
-	font-weight: 700;
 	color: var(--primary-color);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
