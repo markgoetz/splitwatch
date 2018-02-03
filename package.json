@@ -9,7 +9,7 @@
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "lint": "eslint src",
-    "test": "jest",
+    "test": "jest src",
     "deploy": "firebase deploy"
   },
   "eslintIgnore": [
@@ -28,6 +28,17 @@
     "firebase": "^4.9.0",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
+    "preact-render-spy": "^1.2.2",
     "preact-router": "^2.5.7"
+  },
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
+    }
   }
 }

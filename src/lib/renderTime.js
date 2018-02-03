@@ -1,4 +1,4 @@
-export default function renderTime(elapsedTime, decimals) {
+export default function renderTime(elapsedTime, decimals = 1) {
   const timeInSeconds = Math.floor(elapsedTime / 1000);
   const hours = Math.floor(timeInSeconds / 3600);
 
@@ -7,13 +7,18 @@ export default function renderTime(elapsedTime, decimals) {
 
   const seconds = minutesRemaining - minutes * 60;
 
-  const fractionalSeconds = Math.floor(Math.pow(10, decimals) * (elapsedTime / 1000 - timeInSeconds));
+  const hoursMinutesSeconds = `${zeroPrefix(hours)}:${zeroPrefix(minutes)}:${zeroPrefix(seconds)}`;
 
-  return `${zeroPrefix(hours)}:${zeroPrefix(minutes)}:${zeroPrefix(seconds)}.${zeroPrefix(fractionalSeconds, decimals)}`;
+  if (decimals === 0) {
+    return hoursMinutesSeconds;
+  }
+
+  const fractionalSeconds = Math.floor(Math.pow(10, decimals) * (elapsedTime / 1000 - timeInSeconds));
+  return `${hoursMinutesSeconds}.${zeroPrefix(fractionalSeconds, decimals)}`;
 }
 
-function zeroPrefix(number, length = 2) {
-  let output = number;
+export function zeroPrefix(number, length = 2) {
+  let output = `${number}`;
 
   for (let i = 1; i < length; i++) {
     if (number < Math.pow(10, i)) {
