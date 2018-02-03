@@ -1,10 +1,10 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import TimerComponent from '../../components/TimerComponent';
 
 export default class TimerView {
-    render() {
-        return <div>
-            <TimerComponent {...this.props} />
-        </div>;
-    }
+  render() {
+    return (<div>
+      <TimerComponent {...this.props} />
+    </div>);
+  }
 }

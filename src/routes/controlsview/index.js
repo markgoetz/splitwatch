@@ -1,40 +1,44 @@
 import { h, Component } from 'preact';
-import style from './style';
 import Timer from '../../lib/Timer';
-import TimerComponent from '../../components/TimerComponent/index';
+import Header from '../../components/Header';
+import VerticalLayout from '../../components/VerticalLayout';
+import TimerComponent from '../../components/TimerComponent';
 
 export default class ControlsView extends Component {
-    componentDidMount() {
-        this.timer = new Timer(this.props.startTime, this.props.baseTime);
-    }
+  startTime = () => {
+    this.timer.start(Date.now());
+  }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.baseTime != this.props.baseTime) {
-            this.timer.setBaseTime(nextProps.baseTime);
-        }
-    }
+  pauseTime = () => {
+    this.timer.pause(Date.now());
+  }
 
-    startTime = () => {
-        this.timer.start(Date.now());
-    }
+  stopTime = () => {
+    this.timer.stop(Date.now());
+  }
 
-    pauseTime = () => {
-        this.timer.pause(Date.now());
-    }
+  componentDidMount() {
+    this.timer = new Timer(this.props.startTime, this.props.baseTime);
+  }
 
-    stopTime = () => {
-        this.timer.stop(Date.now());
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.baseTime !== this.props.baseTime) {
+      this.timer.setBaseTime(nextProps.baseTime);
     }
+  }
 
-    render() {
-        const playPauseButton = this.props.isPlaying ?
-            <button onClick={this.pauseTime}>Pause</button> :
-            <button onClick={this.startTime}>Play</button>;
+  render() {
+    const playPauseButton = this.props.isPlaying ?
+      <button onClick={this.pauseTime}>Pause</button> :
+      <button onClick={this.startTime}>Play</button>;
 
-        return <div>
-            <TimerComponent {...this.props} />
-            { playPauseButton }
-            <button onClick={this.stopTime}>Stop</button>
-        </div>;
-    }
+    return (<div>
+      <Header />
+      <VerticalLayout>
+        <TimerComponent {...this.props} />
+        {playPauseButton}
+        <button onClick={this.stopTime}>Stop</button>
+      </VerticalLayout>
+    </div>);
+  }
 }

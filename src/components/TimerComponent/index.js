@@ -5,26 +5,26 @@ import styles from './style.css';
 
 export default class TimerComponent extends Component {
     state = {
-        elapsedTime: 0,
+      elapsedTime: 0
     };
+
+    updateTime = () => {
+      this.setState({
+        elapsedTime: (this.props.isPlaying) ?
+          Date.now() - this.props.startTime + this.props.baseTime :
+          this.props.baseTime
+      });
+      window.requestAnimationFrame(this.updateTime);
+    }
 
     // gets called when this route is navigated to
     componentDidMount() {
-        window.requestAnimationFrame(this.updateTime);
-    }
-
-    updateTime = () => {
-        this.setState({
-            elapsedTime: (this.props.isPlaying) ?
-                Date.now() - this.props.startTime + this.props.baseTime :
-                this.props.baseTime
-        });
-        window.requestAnimationFrame(this.updateTime);
+      window.requestAnimationFrame(this.updateTime);
     }
 
     render() {
-        return <div class={styles.timer}>
-            {renderTime(this.state.elapsedTime, 1)}
-        </div>;
+      return (<div class={styles.timer}>
+        {renderTime(this.state.elapsedTime, 1)}
+      </div>);
     }
 }

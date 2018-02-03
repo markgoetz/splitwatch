@@ -2,12 +2,12 @@ import firebase from 'firebase';
 import apiKey from '../env/api_key';
 
 const config = {
-    apiKey,
-    authDomain: "splitwatch-16403.firebaseapp.com",
-    databaseURL: "https://splitwatch-16403.firebaseio.com",
-    projectId: "splitwatch-16403",
-    storageBucket: "",
-    messagingSenderId: "465292860804"
+  apiKey,
+  authDomain: 'splitwatch-16403.firebaseapp.com',
+  databaseURL: 'https://splitwatch-16403.firebaseio.com',
+  projectId: 'splitwatch-16403',
+  storageBucket: '',
+  messagingSenderId: '465292860804'
 };
 firebase.initializeApp(config);
 
