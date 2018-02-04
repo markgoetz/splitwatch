@@ -28,8 +28,10 @@ export default class App extends Component {
   }
 
   render() {
+    const themeName = this.currentUrl === '/timer' ? 'theme_dark' : 'theme_light';
+
     return (
-      <div id="app">
+      <div id="app" class={themeName}>
         <Router onChange={this.handleRoute}>
           <ControlsView path="/" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />
           <TimerView path="/timer" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />

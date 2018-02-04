@@ -32,6 +32,10 @@
     "preact-router": "^2.5.7"
   },
   "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
     "verbose": true,
     "moduleFileExtensions": [
       "js"

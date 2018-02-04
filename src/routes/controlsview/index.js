@@ -1,7 +1,9 @@
 import { h, Component } from 'preact';
 import Timer from '../../lib/Timer';
 import Header from '../../components/Header';
+import Button from '../../components/Button';
 import VerticalLayout from '../../components/VerticalLayout';
+import Wrapper from '../../components/Wrapper';
 import TimerComponent from '../../components/TimerComponent';
 
 export default class ControlsView extends Component {
@@ -29,16 +31,18 @@ export default class ControlsView extends Component {
 
   render() {
     const playPauseButton = this.props.isPlaying ?
-      <button onClick={this.pauseTime}>Pause</button> :
-      <button onClick={this.startTime}>Play</button>;
+      <Button onClick={this.pauseTime}>Pause</Button> :
+      <Button isPrimary onClick={this.startTime}>Start</Button>;
 
     return (<div>
       <Header />
-      <VerticalLayout>
-        <TimerComponent {...this.props} />
-        {playPauseButton}
-        <button onClick={this.stopTime}>Stop</button>
-      </VerticalLayout>
+      <Wrapper>
+        <VerticalLayout>
+          <TimerComponent {...this.props} />
+          {playPauseButton}
+          <Button onClick={this.stopTime}>Stop</Button>
+        </VerticalLayout>
+      </Wrapper>
     </div>);
   }
 }

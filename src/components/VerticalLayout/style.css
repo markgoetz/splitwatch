@@ -1,5 +1,9 @@
 .verticalLayout {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+}
+
+.verticalLayout > * + * {
+    margin-top: 20px;
 }
