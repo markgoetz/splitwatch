@@ -4,3 +4,4 @@ node_modules
 /src/env
 work
 coverage
+.DS_Store

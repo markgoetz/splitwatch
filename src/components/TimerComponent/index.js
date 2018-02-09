@@ -17,7 +17,6 @@ export default class TimerComponent extends Component {
       window.requestAnimationFrame(this.updateTime);
     }
 
-    // gets called when this route is navigated to
     componentDidMount() {
       window.requestAnimationFrame(this.updateTime);
     }

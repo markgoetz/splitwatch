@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wrapper Wrapper renders correctly 1`] = `
+preact-render-spy (1 nodes)
+-------
+<div>
+  <div>Test element</div>
+  <button>Test button</button>
+  <div>Extra test element</div>
+</div>
+
+`;
