@@ -1,7 +1,7 @@
 import Timer from './Timer';
 
 jest.mock('./data.js');
-import { updateTimer } from './data.js';
+import { updateTimer, addSplit } from './data.js';
 
 updateTimer.mockImplementation();
 
@@ -77,6 +77,12 @@ describe('Timer', () => {
     const timer = new Timer(1000, 2000);
     timer.stop(3000);
     expect(updateTimer).lastCalledWith({ startTime: 3000, baseTime: 0, isPlaying: false });
+  });
+
+  test('Split calls addSplit', () => {
+    const timer = new Timer(1000, 2000);
+    timer.split(5000);
+    expect(addSplit).lastCalledWith(6000);
   });
 
   test('setBaseTime sets the base time', () => {

@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import VerticalLayout from '../../components/VerticalLayout';
 import Wrapper from '../../components/Wrapper';
 import TimerComponent from '../../components/TimerComponent';
+import SplitList from '../../components/SplitList';
 
 export default class ControlsView extends Component {
   startTime = () => {
@@ -19,6 +20,10 @@ export default class ControlsView extends Component {
     this.timer.stop(Date.now());
   }
 
+  addSplit = () => {
+    this.timer.split(Date.now());
+  }
+
   componentDidMount() {
     this.timer = new Timer(this.props.startTime, this.props.baseTime);
   }
@@ -31,7 +36,7 @@ export default class ControlsView extends Component {
 
   render() {
     const playPauseButton = this.props.isPlaying ?
-      <Button onClick={this.pauseTime}>Pause</Button> :
+      <Button isPrimary onClick={this.addSplit}>Split</Button> :
       <Button isPrimary onClick={this.startTime}>Start</Button>;
 
     return (<div>
@@ -40,7 +45,10 @@ export default class ControlsView extends Component {
         <VerticalLayout>
           <TimerComponent {...this.props} />
           {playPauseButton}
+          <Button onClick={this.pauseTime}>Pause</Button>
           <Button onClick={this.stopTime}>Stop</Button>
+          <Button onClick={this.resetTime}>Reset</Button>
+          <SplitList splits={this.props.splits} />
         </VerticalLayout>
       </Wrapper>
     </div>);

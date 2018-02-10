@@ -8,22 +8,28 @@ import { database } from '../lib/firebaseConfig';
 
 export default class App extends Component {
   state = {
-    isPlaying: false,
-    startTime: 0,
-    baseTime: 0
+    timer: {
+      isPlaying: false,
+      startTime: 0,
+      baseTime: 0
+    },
+    splits: []
   }
 
   /** Gets fired when the route changes.
-   *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
-  *	@param {string} event.url	The newly routed URL
-  */
+   * @param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
+   * @param {string} event.url	The newly routed URL
+   */
   handleRoute = e => {
     this.currentUrl = e.url;
   };
 
   componentWillMount() {
     database.ref().on('value',
-      data => this.setState(data.val())
+      data => this.setState({
+        timer: data.val().timer,
+        splits: Object.values(data.val().splits)
+      })
     );
   }
 
@@ -33,8 +39,8 @@ export default class App extends Component {
     return (
       <div id="app" class={themeName}>
         <Router onChange={this.handleRoute}>
-          <ControlsView path="/" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />
-          <TimerView path="/timer" startTime={this.state.startTime} baseTime={this.state.baseTime} isPlaying={this.state.isPlaying} />
+          <ControlsView path="/" startTime={this.state.timer.startTime} baseTime={this.state.timer.baseTime} isPlaying={this.state.timer.isPlaying} splits={this.state.splits} />
+          <TimerView path="/timer" startTime={this.state.timer.startTime} baseTime={this.state.timer.baseTime} isPlaying={this.state.timer.isPlaying} splits={this.state.splits} />
         </Router>
       </div>
     );

@@ -1,4 +1,4 @@
-import { updateTimer } from './data.js';
+import { updateTimer, addSplit } from './data.js';
 
 export default class Timer {
   constructor(startTime, baseTime) {
@@ -28,5 +28,10 @@ export default class Timer {
 
   setBaseTime(time) {
     this.baseTime = time;
+  }
+
+  split(time) {
+    const splitTime = time - this.startTime + this.baseTime;
+    addSplit(splitTime);
   }
 }
