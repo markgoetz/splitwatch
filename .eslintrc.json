@@ -29,7 +29,11 @@
                 "properties": "always"
             }
         ],
-        "indent": ["error", 2]
+        "indent": ["error", 2],
+        "brace-style": [
+            1,
+            "1tbs"
+        ]
     },
     "parserOptions": {
         "ecmaFeatures": {

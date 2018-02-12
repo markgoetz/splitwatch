@@ -10,20 +10,20 @@ export default class Timer {
   start(time) {
     this.isPlaying = true;
     this.startTime = time;
-    updateTimer({ ...this });
+    updateTimer({ isPlaying: this.isPlaying, startTime: this.startTime, baseTime: this.baseTime });
   }
 
   pause(time) {
     this.isPlaying = false;
     this.baseTime = time - this.startTime + this.baseTime;
-    updateTimer({ ...this });
+    updateTimer({ isPlaying: this.isPlaying, startTime: this.startTime, baseTime: this.baseTime });
   }
 
   stop(time) {
     this.isPlaying = false;
     this.startTime = time;
     this.baseTime = 0;
-    updateTimer({ ...this });
+    updateTimer({ isPlaying: this.isPlaying, startTime: this.startTime, baseTime: this.baseTime });
   }
 
   setBaseTime(time) {

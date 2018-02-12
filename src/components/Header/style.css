@@ -2,9 +2,6 @@
     color: var(--primary-color);
     background-color: var(--dark-grey);
     text-align: center;
-    font-family: var(--font-sans);
     padding: 20px 0;
-
-    font-weight: bold;
-    font-size: 28px;
+    margin-bottom: 40px;
 }

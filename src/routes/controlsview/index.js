@@ -6,6 +6,7 @@ import VerticalLayout from '../../components/VerticalLayout';
 import Wrapper from '../../components/Wrapper';
 import TimerComponent from '../../components/TimerComponent';
 import SplitList from '../../components/SplitList';
+import SidebarLayout from '../../components/SidebarLayout';
 
 export default class ControlsView extends Component {
   startTime = () => {
@@ -44,11 +45,15 @@ export default class ControlsView extends Component {
       <Wrapper>
         <VerticalLayout>
           <TimerComponent {...this.props} />
-          {playPauseButton}
-          <Button onClick={this.pauseTime}>Pause</Button>
-          <Button onClick={this.stopTime}>Stop</Button>
-          <Button onClick={this.resetTime}>Reset</Button>
-          <SplitList splits={this.props.splits} />
+          <SidebarLayout>
+            <VerticalLayout centered>
+              {playPauseButton}
+              <Button onClick={this.pauseTime}>Pause</Button>
+              <Button onClick={this.stopTime}>Stop</Button>
+              <Button onClick={this.resetTime}>Reset</Button>
+            </VerticalLayout>
+            <SplitList splits={this.props.splits} />
+          </SidebarLayout>
         </VerticalLayout>
       </Wrapper>
     </div>);

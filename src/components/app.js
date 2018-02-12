@@ -26,10 +26,15 @@ export default class App extends Component {
 
   componentWillMount() {
     database.ref().on('value',
-      data => this.setState({
-        timer: data.val().timer,
-        splits: Object.values(data.val().splits)
-      })
+      data => {
+        const val = data.val();
+        const splits = val.splits ? Object.values(val.splits) : [];
+
+        this.setState({
+          timer: val.timer,
+          splits
+        });
+      }
     );
   }
 
