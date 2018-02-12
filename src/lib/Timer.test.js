@@ -5,6 +5,10 @@ import { updateTimer, addSplit } from './data.js';
 
 updateTimer.mockImplementation();
 
+beforeEach(() => {
+  updateTimer.mockReset();
+});
+
 describe('Timer', () => {
   test('Constructor initializes the timer correctly', () => {
     const timer = new Timer(200, 500);
@@ -39,20 +43,30 @@ describe('Timer', () => {
 
   test('Pause sets isPlaying flag to false', () => {
     const timer = new Timer(0, 0);
+    timer.isPlaying = true;
     timer.pause(2000);
     expect(timer.isPlaying).toBe(false);
   });
 
   test('Pause sets baseTime based on start time and current base time', () => {
     const timer = new Timer(1000, 2000);
+    timer.isPlaying = true;
     timer.pause(3000);
     expect(timer.baseTime).toBe(4000);
   });
 
   test('Pause calls updateTimer', () => {
     const timer = new Timer(1000, 2000);
+    timer.isPlaying = true;
     timer.pause(3000);
     expect(updateTimer).lastCalledWith({ startTime: 1000, baseTime: 4000, isPlaying: false });
+  });
+
+  test('Pause does not call updateTimer if already paused', () => {
+    const timer = new Timer(1000, 2000);
+    timer.isPlaying = false;
+    timer.pause(3000);
+    expect(updateTimer.mock.calls.length).toBe(0);
   });
 
   test('Stop sets isPlaying to false', () => {

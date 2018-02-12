@@ -4,7 +4,7 @@ exports[`Header Component Header renders correctly 1`] = `
 preact-render-spy (1 nodes)
 -------
 <div>
-  <h1>SplitWatch</h1>
+  <Heading level="1">SplitWatch</Heading>
 </div>
 
 `;

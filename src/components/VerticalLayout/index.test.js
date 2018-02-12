@@ -12,4 +12,13 @@ describe('Vertical Layout', () => {
     </VerticalLayout>);
     expect(context).toMatchSnapshot();
   });
+
+  test('Vertical layout renders correctly when centered', () => {
+    const context = shallow(<VerticalLayout centered>
+      <div>Test element</div>
+      <button>Test button</button>
+      <div>Extra test element</div>
+    </VerticalLayout>);
+    expect(context).toMatchSnapshot();
+  });
 });

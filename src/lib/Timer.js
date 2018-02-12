@@ -14,6 +14,8 @@ export default class Timer {
   }
 
   pause(time) {
+    if (!this.isPlaying) return;
+
     this.isPlaying = false;
     this.baseTime = time - this.startTime + this.baseTime;
     updateTimer({ isPlaying: this.isPlaying, startTime: this.startTime, baseTime: this.baseTime });

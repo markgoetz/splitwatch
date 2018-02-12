@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import styles from './style';
+import styles from './style.css';
 
 export default function Heading(props) {
   const tagProps = { ...props };
