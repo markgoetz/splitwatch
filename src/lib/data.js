@@ -1,11 +1,7 @@
 import { database } from './firebaseConfig';
 
 export function updateTimer({ isPlaying, startTime, baseTime }) {
-  database.ref('timer').update({
-    isPlaying,
-    startTime,
-    baseTime
-  });
+  database.ref('timer').update({ isPlaying, startTime, baseTime });
 }
 
 export function addSplit(splitTime) {

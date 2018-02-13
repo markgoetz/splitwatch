@@ -1,12 +1,16 @@
 import Timer from './Timer';
 
 jest.mock('./data.js');
-import { updateTimer, addSplit } from './data.js';
+import { updateTimer, addSplit, removeSplits } from './data.js';
 
 updateTimer.mockImplementation();
+addSplit.mockImplementation();
+removeSplits.mockImplementation();
 
 beforeEach(() => {
   updateTimer.mockReset();
+  addSplit.mockReset();
+  removeSplits.mockReset();
 });
 
 describe('Timer', () => {
@@ -19,6 +23,7 @@ describe('Timer', () => {
 
   test('Start sets isPlaying flag to true', () => {
     const timer = new Timer(0, 0);
+    timer.isPlaying = false;
     timer.start(1000);
     expect(timer.isPlaying).toBe(true);
   });
@@ -71,6 +76,7 @@ describe('Timer', () => {
 
   test('Stop sets isPlaying to false', () => {
     const timer = new Timer(1000, 2000);
+    timer.isPlaying = true;
     timer.stop(3000);
     expect(timer.isPlaying).toBe(false);
   });
@@ -91,6 +97,37 @@ describe('Timer', () => {
     const timer = new Timer(1000, 2000);
     timer.stop(3000);
     expect(updateTimer).lastCalledWith({ startTime: 3000, baseTime: 0, isPlaying: false });
+  });
+
+  test('Reset sets isPlaying to false', () => {
+    const timer = new Timer(1000, 2000);
+    timer.isPlaying = true;
+    timer.stop(3000);
+    expect(timer.isPlaying).toBe(false);
+  });
+
+  test('Reset sets startTime correctly', () => {
+    const timer = new Timer(1000, 2000);
+    timer.reset(3000);
+    expect(timer.startTime).toBe(3000);
+  });
+
+  test('Reset sets baseTime to 0', () => {
+    const timer = new Timer(1000, 2000);
+    timer.reset(3000);
+    expect(timer.baseTime).toBe(0);
+  });
+
+  test('Reset calls updateTimer', () => {
+    const timer = new Timer(1000, 2000);
+    timer.reset(3000);
+    expect(updateTimer).lastCalledWith({ startTime: 3000, baseTime: 0, isPlaying: false });
+  });
+
+  test('Reset calls removeSplits', () => {
+    const timer = new Timer(1000, 2000);
+    timer.reset(3000);
+    expect(removeSplits.mock.calls.length).toBe(1);
   });
 
   test('Split calls addSplit', () => {

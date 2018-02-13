@@ -3,7 +3,7 @@
 exports[`Sidebar Layout Component renders correctly with one child 1`] = `
 preact-render-spy (1 nodes)
 -------
-<undefined></undefined>
+<div>Test!</div>
 
 `;
 

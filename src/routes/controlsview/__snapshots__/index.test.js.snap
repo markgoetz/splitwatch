@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ControlsView renders when paused 1`] = `
+preact-render-spy (1 nodes)
+-------
+<div>
+  <Header></Header>
+  <Wrapper>
+    <VerticalLayout align="center">
+      <TimerComponent
+        startTime={1000}
+        baseTime={3000}
+      >
+      </TimerComponent>
+      <SidebarLayout>
+        <VerticalLayout>
+          <Button
+            isPrimary={true}
+            onClick={[Function anonymous]}
+          >
+            Start
+          </Button>
+          <Button onClick={[Function anonymous]}>Pause</Button>
+          <Button onClick={[Function anonymous]}>Stop</Button>
+          <Button onClick={[Function anonymous]}>Reset</Button>
+        </VerticalLayout>
+        <SplitList></SplitList>
+      </SidebarLayout>
+    </VerticalLayout>
+  </Wrapper>
+</div>
+
+`;
+
+exports[`ControlsView renders when playing 1`] = `
+preact-render-spy (1 nodes)
+-------
+<div>
+  <Header></Header>
+  <Wrapper>
+    <VerticalLayout align="center">
+      <TimerComponent
+        isPlaying={true}
+        startTime={1000}
+        baseTime={3000}
+      >
+      </TimerComponent>
+      <SidebarLayout>
+        <VerticalLayout>
+          <Button
+            isPrimary={true}
+            onClick={[Function anonymous]}
+          >
+            Split
+          </Button>
+          <Button onClick={[Function anonymous]}>Pause</Button>
+          <Button onClick={[Function anonymous]}>Stop</Button>
+          <Button onClick={[Function anonymous]}>Reset</Button>
+        </VerticalLayout>
+        <SplitList></SplitList>
+      </SidebarLayout>
+    </VerticalLayout>
+  </Wrapper>
+</div>
+
+`;

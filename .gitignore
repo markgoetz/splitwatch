@@ -1,7 +1,7 @@
 node_modules
 /build
 /*.log
-/src/env
+/src/env/api_key.js
 work
 coverage
 .DS_Store
