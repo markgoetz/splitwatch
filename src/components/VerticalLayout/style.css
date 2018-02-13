@@ -8,6 +8,14 @@
     margin-top: 20px;
 }
 
-.centered {
+.center {
     align-items: center;
+}
+
+.left {
+    align-items: flex-start;
+}
+
+.right {
+    align-items: flex-end;
 }

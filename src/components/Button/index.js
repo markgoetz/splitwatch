@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './style';
+import style from './style.css';
 
 export default function Button(props) {
   const baseClassName = style.button;

@@ -21,6 +21,10 @@ export default class ControlsView extends Component {
     this.timer.stop(Date.now());
   }
 
+  resetTime = () => {
+    this.timer.reset(Date.now());
+  }
+
   addSplit = () => {
     this.timer.split(Date.now());
   }
@@ -43,10 +47,10 @@ export default class ControlsView extends Component {
     return (<div>
       <Header />
       <Wrapper>
-        <VerticalLayout>
+        <VerticalLayout align="center">
           <TimerComponent {...this.props} />
           <SidebarLayout>
-            <VerticalLayout centered>
+            <VerticalLayout>
               {playPauseButton}
               <Button onClick={this.pauseTime}>Pause</Button>
               <Button onClick={this.stopTime}>Stop</Button>

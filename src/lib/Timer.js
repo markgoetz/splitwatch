@@ -1,4 +1,4 @@
-import { updateTimer, addSplit } from './data.js';
+import { updateTimer, addSplit, removeSplits } from './data.js';
 
 export default class Timer {
   constructor(startTime, baseTime) {
@@ -26,6 +26,11 @@ export default class Timer {
     this.startTime = time;
     this.baseTime = 0;
     updateTimer({ isPlaying: this.isPlaying, startTime: this.startTime, baseTime: this.baseTime });
+  }
+
+  reset(time) {
+    this.stop(time);
+    removeSplits();
   }
 
   setBaseTime(time) {

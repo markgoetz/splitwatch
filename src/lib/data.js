@@ -11,3 +11,7 @@ export function updateTimer({ isPlaying, startTime, baseTime }) {
 export function addSplit(splitTime) {
   database.ref('splits').push(splitTime);
 }
+
+export function removeSplits() {
+  database.ref('splits').remove();
+}

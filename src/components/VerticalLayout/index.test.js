@@ -13,8 +13,26 @@ describe('Vertical Layout', () => {
     expect(context).toMatchSnapshot();
   });
 
+  test('Vertical layout renders correctly when left-aligned', () => {
+    const context = shallow(<VerticalLayout align="left">
+      <div>Test element</div>
+      <button>Test button</button>
+      <div>Extra test element</div>
+    </VerticalLayout>);
+    expect(context).toMatchSnapshot();
+  });
+
   test('Vertical layout renders correctly when centered', () => {
-    const context = shallow(<VerticalLayout centered>
+    const context = shallow(<VerticalLayout align="center">
+      <div>Test element</div>
+      <button>Test button</button>
+      <div>Extra test element</div>
+    </VerticalLayout>);
+    expect(context).toMatchSnapshot();
+  });
+
+  test('Vertical layout renders correctly when right-aligned', () => {
+    const context = shallow(<VerticalLayout align="right">
       <div>Test element</div>
       <button>Test button</button>
       <div>Extra test element</div>

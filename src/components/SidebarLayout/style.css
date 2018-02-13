@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.right {
+  margin-top: 20px;
+}
+
 @media (min-width: 769px) {
   .layout {
     flex-direction: row;

@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import Heading from '../Heading';
 import renderTime from '../../lib/renderTime';
-import styles from './style';
+import styles from './style.css';
 
 export default function SplitList(props) {
   const splitTimes = props.splits.map(split => (
