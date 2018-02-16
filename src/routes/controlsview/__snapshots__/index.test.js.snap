@@ -5,7 +5,7 @@ preact-render-spy (1 nodes)
 -------
 <div>
   <Header></Header>
-  <Wrapper>
+  <Wrapper align="center">
     <VerticalLayout align="center">
       <TimerComponent
         startTime={1000}
@@ -37,7 +37,7 @@ preact-render-spy (1 nodes)
 -------
 <div>
   <Header></Header>
-  <Wrapper>
+  <Wrapper align="center">
     <VerticalLayout align="center">
       <TimerComponent
         isPlaying={true}

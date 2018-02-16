@@ -39,10 +39,13 @@ export default class App extends Component {
   }
 
   render() {
-    const themeName = this.currentUrl === '/timer' ? 'theme_dark' : 'theme_light';
+    let appStyle = this.currentUrl === '/timer' ? 'theme_dark' : 'theme_light';
+    if (this.currentUrl === '/timer') {
+      appStyle = `${appStyle} top_padding`;
+    }
 
     return (
-      <div id="app" class={themeName}>
+      <div id="app" class={appStyle}>
         <Router onChange={this.handleRoute}>
           <ControlsView path="/" startTime={this.state.timer.startTime} baseTime={this.state.timer.baseTime} isPlaying={this.state.timer.isPlaying} splits={this.state.splits} />
           <TimerView path="/timer" startTime={this.state.timer.startTime} baseTime={this.state.timer.baseTime} isPlaying={this.state.timer.isPlaying} splits={this.state.splits} />

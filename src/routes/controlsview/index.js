@@ -46,7 +46,7 @@ export default class ControlsView extends Component {
 
     return (<div>
       <Header />
-      <Wrapper>
+      <Wrapper align="center">
         <VerticalLayout align="center">
           <TimerComponent {...this.props} />
           <SidebarLayout>
