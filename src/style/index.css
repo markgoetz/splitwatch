@@ -25,10 +25,10 @@ html, body {
 
 .theme_light {
 	background-color: var(--light-grey);
-	color: var(--dark-grey);
+	color: var(--darkest-grey);
 }
 
 .theme_dark {
-	background: var(--dark-grey);
+	background: var(--darkest-grey);
 	color: var(--primary-color);
 }

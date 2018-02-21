@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sidebar Layout Component renders correctly with one child 1`] = `
-preact-render-spy (1 nodes)
--------
-<div>Test!</div>
-
-`;
-
 exports[`Sidebar Layout Component renders correctly with two children 1`] = `
 preact-render-spy (1 nodes)
 -------
