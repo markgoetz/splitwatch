@@ -24,6 +24,8 @@
     "preact-cli": "^2.0.1"
   },
   "dependencies": {
+    "@firebase/app": "^0.1.10",
+    "@firebase/database": "^0.1.11",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "firebase": "^4.9.0",
